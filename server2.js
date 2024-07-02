@@ -9,6 +9,7 @@ app.get('/mensaje', (req, res) => {
     res.send('<h1>El servidor funciona correctamente</h1> <p>Aquí iría el contenido del mensaje</p> ');
 });
 
+//Devolver un 404...
 app.use((req, res) => {
     res.status(404).send('No está lo que buscabas...');
 });

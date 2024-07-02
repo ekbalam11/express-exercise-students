@@ -1,6 +1,9 @@
 //Importamos el módulo de terceros Express
 const express = require('express');
 
+//modulo built-in path
+const path = require('path');
+
 //Creamos una nueva instancia del servidor express
 const app = express();
 
@@ -8,10 +11,16 @@ app.get('/team', (req, res) => {
     res.sendFile(__dirname + "/server3-files/team.html")
 });
 
+//Esta es una forma más segura
 app.get('/about', (req, res) => {
-    res.sendFile(__dirname + "/server3-files/about.html");
+    const url= path.join(__dirname, 'server3-files', 'about.html');
+    res.sendFile(url);
 });
 
+//Devolver un 404...
+app.use((req, res) => {
+    res.status(404).send('No está lo que buscabas...');
+});
 
 //Tenemos que levantar el servidor y escuchar en el puerto 3000
 app.listen(3000, () => {
